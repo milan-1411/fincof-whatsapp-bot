@@ -52,14 +52,17 @@ app.get('/qr', async (req, res) => {
 // New registration notification
 app.post('/new-registration', async (req, res) => {
     try {
-        const { name, email } = req.body;
+        const { name, email, message } = req.body;
         const GROUP_ID = '120363424241835379@g.us';
-        const message =
+        
+        const text = message || (
             `🎉 *New FInCoF'26 Registration!*\n` +
             `👤 *Name:* ${name}\n` +
             `📧 *Email:* ${email}\n\n` +
-            `Welcome aboard! 🚀`;
-        await sock.sendMessage(GROUP_ID, { text: message });
+            `Welcome aboard! 🚀`
+        );
+
+        await sock.sendMessage(GROUP_ID, { text });
         res.json({ success: true });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });

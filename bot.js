@@ -52,10 +52,12 @@ app.get('/qr', async (req, res) => {
 // New registration notification
 app.post('/new-registration', async (req, res) => {
     try {
+        const { name, email, message } = req.body;
         const GROUP_IDS = [
-    '120363427371811390@g.us',
-    '120363426660038006@g.us'
-];
+            '120363427371811390@g.us',
+            '120363426660038006@g.us'
+        ];
+        
         const text = message || (
             `🎉 *New FInCoF'26 Registration!*\n` +
             `👤 *Name:* ${name}\n` +
@@ -64,14 +66,13 @@ app.post('/new-registration', async (req, res) => {
         );
 
         for (const id of GROUP_IDS) {
-    await sock.sendMessage(id, { text });
-}
+            await sock.sendMessage(id, { text });
+        }
         res.json({ success: true });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
 });
-
 // Get groups
 app.get('/get-groups', async (req, res) => {
     try {

@@ -53,9 +53,10 @@ app.get('/qr', async (req, res) => {
 app.post('/new-registration', async (req, res) => {
     try {
         const { name, email, message } = req.body;
-        const GROUP_IDS = [
-    '120363426103873560@g.us'
-]; 
+       const GROUP_IDS = [
+    '120363426103873560@g.us',
+    '120363426660038006@g.us'
+];
         const text = message || (
             `🎉 *New FInCoF'26 Registration!*\n` +
             `👤 *Name:* ${name}\n` +

@@ -85,4 +85,13 @@ app.get('/get-groups', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
+app.post('/send-to-group', async (req, res) => {
+    try {
+        const { groupId, message } = req.body;
+        await sock.sendMessage(groupId, { text: message });
+        res.json({ success: true, sentTo: groupId });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
 connectToWhatsApp();

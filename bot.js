@@ -54,7 +54,7 @@ app.post('/new-registration', async (req, res) => {
     try {
         const { name, email, message } = req.body;
        const GROUP_IDS = [
-    '120363426103873560@g.us',
+    '120363409572026168@g.us',
     '120363426660038006@g.us'
 ];
         const text = message || (
